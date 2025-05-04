@@ -35,7 +35,7 @@ const UserDashboardSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/dashboard/chat"
+          to="/dashboard/ai_assistant"
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-3 transition-colors duration-200 ${isActive ? 'bg-[white] text-[#0A3161] rounded-md' : 'hover:bg-gray-400 text-white hover:text-[#0A3161] rounded-md'
             }`

@@ -18,7 +18,9 @@ import Verification from './component/Shared/Verification/Verification.jsx';
 import ConfirmPassword from './component/Shared/ConfirmPassword/ConfirmPassword.jsx';
 import PasswordChangeSuccesfully from './component/Shared/PasswordChangeSuccesfully/PasswordChangeSuccesfully.jsx';
 
-import OrderManagement from './component/UsersDashboard/UserDashboardPages/OrderManagement/PartScanner.jsx';
+
+import PartScanner from './component/UsersDashboard/UserDashboardPages/OrderManagement/PartScanner.jsx';
+import AiAssistant from './component/UsersDashboard/UserDashboardPages/AiAssistant.jsx';
 
 
 const router = createBrowserRouter([
@@ -40,7 +42,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <OrderManagement />
+        element: <PartScanner/>
+      },
+      {
+        path:"ai_assistant",
+        element: <AiAssistant/>
       },
      
       
