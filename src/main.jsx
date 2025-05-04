@@ -21,6 +21,8 @@ import PasswordChangeSuccesfully from './component/Shared/PasswordChangeSuccesfu
 
 import PartScanner from './component/UsersDashboard/UserDashboardPages/OrderManagement/PartScanner.jsx';
 import AiAssistant from './component/UsersDashboard/UserDashboardPages/AiAssistant.jsx';
+import TechnicalManual from './component/UsersDashboard/UserDashboardPages/TechnicalManual.jsx';
+import Settings from './component/UsersDashboard/UserDashboardPages/Settings.jsx';
 
 
 const router = createBrowserRouter([
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path:"ai_assistant",
         element: <AiAssistant/>
+      },
+      {
+        path:"technical_manual",
+        element: <TechnicalManual/>
+      },
+      {
+        path:"settings",
+        element: <Settings/>
       },
      
       

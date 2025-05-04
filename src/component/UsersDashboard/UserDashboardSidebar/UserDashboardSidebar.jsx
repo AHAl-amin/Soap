@@ -11,7 +11,7 @@ import { MdOutlineLogout } from "react-icons/md";
 
 const UserDashboardSidebar = () => {
   const location = useLocation();
-  const isProjectActive = location.pathname.startsWith('/dashboard/user_notifications');
+  const isProjectActive = location.pathname.startsWith('/dashboard/technical_manual');
   const isDashboardActive = ["/dashboard", "/dashboard/buyer_order_create", "/dashboard/createBuyerOrder", "/dashboard/buyer_candidate_list"].includes(location.pathname);
 
 
@@ -47,7 +47,7 @@ const UserDashboardSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/dashboard/user_notifications"
+          to="/dashboard/technical_manual"
           className={() =>
             `flex items-center gap-3 px-3 py-3 transition-colors duration-200 ${isProjectActive ? 'bg-[white] text-[#0A3161] rounded-md' : 'hover:bg-gray-400 text-white hover:text-[#0A3161] rounded-md'
             }`
@@ -58,7 +58,7 @@ const UserDashboardSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/dashboard/user_profile_dettails"
+          to="/dashboard/settings"
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-3 transition-colors duration-200 ${isActive ? 'bg-[white] text-[#0A3161] rounded-md' : 'hover:bg-gray-400 text-white hover:text-[#0A3161] rounded-md'
             }`
