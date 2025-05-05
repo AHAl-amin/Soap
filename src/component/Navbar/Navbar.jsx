@@ -1,6 +1,7 @@
 
 
 
+import { Link } from 'react-router-dom';
 import navberIcon from '../img/login_icon.png';
 
 const Navbar = () => {
@@ -15,12 +16,16 @@ const Navbar = () => {
 
                 {/* Buttons */}
                 <div className="space-x-3">
+                    <Link to="/login">
                     <button className="text-white bg-[#0A3161] text-xl font-medium py-2 px-4 rounded-xl cursor-pointer">
                         Log In
                     </button>
+                    </Link>
+                    <Link to='/registration'>
                     <button className="text-[#0A3161] border border-[#0A3161] text-xl font-medium py-2 px-4 rounded-xl cursor-pointer">
                         Sign In
                     </button>
+                    </Link>
                 </div>
             </div>
         </div>

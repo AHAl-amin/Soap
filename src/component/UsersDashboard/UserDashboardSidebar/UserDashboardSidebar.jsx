@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { BiScan, BiSupport } from "react-icons/bi";
 import navberIcon from '../../img/login_icon.png';
@@ -18,10 +18,12 @@ const UserDashboardSidebar = () => {
 
   return (
     <div className="pt-10 bg-[#0A3161] ">
-      <div className=" flex gap-4 items-center justify-center border-b-2 border-b-[#FFFFFF] pb-10">
+      <Link 
+      to="/"
+      className=" flex gap-4 items-center justify-center border-b-2 border-b-[#FFFFFF] pb-10 cursor-pointer">
         <img src={navberIcon} alt="Logo" className="h-10 w-auto" />
         <span className='text-[24px] font-bold font-roboto text-[#FFFFFF]'>ShipMate Ai</span>
-      </div>
+      </Link>
       <div className="flex flex-col gap-2 pt-10 mx-4 h-screen relative">
         <NavLink
           to="/dashboard"
@@ -31,7 +33,7 @@ const UserDashboardSidebar = () => {
 
         >
           <BiScan  className="h-6 w-6" />
-          <h1 className="text-lg font-medium">Part Scanner</h1>
+          <h1 className="text-lg font-medium">Parts Scanner</h1>
         </NavLink>
 
         <NavLink

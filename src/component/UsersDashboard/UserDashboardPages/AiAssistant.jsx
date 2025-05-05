@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import { useState, useRef, useEffect } from "react";
 import { PaperclipIcon, SendIcon, ThumbsUp, ThumbsDown } from "lucide-react";
 import ReactMarkdown from "react-markdown";
