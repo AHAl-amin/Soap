@@ -11,18 +11,18 @@ const Navbar = () => {
                 {/* Logo */}
                 <div className=" flex gap-4 items-center">
                     <img src={navberIcon} alt="Logo" className="h-10 w-auto" />
-                    <span className='text-[24px] font-bold font-roboto text-[#FFFFFF]'>ShipMate Ai</span>
+                    <span className='md:text-[24px] text-sm font-bold font-roboto text-[#FFFFFF]'>ShipMate Ai</span>
                 </div>
 
                 {/* Buttons */}
                 <div className="space-x-3">
                     <Link to="/login">
-                    <button className="text-white bg-[#0A3161] text-xl font-medium py-2 px-4 rounded-xl cursor-pointer">
+                    <button className="text-white bg-[#0A3161] md:text-xl text-sm font-medium py-2 px-4 rounded-xl cursor-pointer">
                         Log In
                     </button>
                     </Link>
                     <Link to='/registration'>
-                    <button className="text-[#0A3161] border border-[#0A3161] text-xl font-medium py-2 px-4 rounded-xl cursor-pointer">
+                    <button className="text-[#0A3161] border border-[#0A3161] md:text-xl text-sm font-medium py-2 px-4 rounded-xl cursor-pointer">
                         Sign In
                     </button>
                     </Link>

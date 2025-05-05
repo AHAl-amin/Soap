@@ -4,44 +4,42 @@
 import React, { useState } from "react";
 
 function Settings() {
-  
+
   const [activeSection, setActiveSection] = useState("edit"); // "edit" | "password"
 
 
   return (
-    <div className="flex justify-center md:pt-40 h-full lora">
+    <div className="flex justify-center md:pt-40 pt-16 h-full lora">
       <div className="font-lora p-6 md:w-2/3 w-full ">
         <div className="flex items-center gap-4 justify-center pb-8">
           <img
             src="https://i.ibb.co/x2wkVkr/Whats-App-Image-2024-07-04-at-10-43-40-AM.jpg"
             alt="Profile"
-            className="w-[120px] h-[120px] rounded-full border-2 border-[#0A3161]"
+            className="md:w-[120px] w-20 h-20 md:h-[120px] rounded-full border-2 border-[#0A3161]"
           />
           <span className="text-[34px] font-semibold text-[#0A3161]">Al-Amin</span>
         </div>
 
         <div className="mt-4 flex gap-10 justify-center">
-        <button
-  onClick={() => setActiveSection("edit")}
-  className={`text-xl transition hover:text-[#0A3161]/80 ${
-    activeSection === "edit"
-      ? "text-[#0A3161] underline font-bold"
-      : "text-[#0A3161]"
-  }`}
->
-  Edit Profile
-</button>
+          <button
+            onClick={() => setActiveSection("edit")}
+            className={`text-xl transition hover:text-[#0A3161]/80 ${activeSection === "edit"
+                ? "text-[#0A3161] underline font-bold"
+                : "text-[#0A3161]"
+              }`}
+          >
+            Edit Profile
+          </button>
 
-<button
-  onClick={() => setActiveSection("password")}
-  className={`text-xl transition hover:text-[#0A3161]/80 ${
-    activeSection === "password"
-      ? "text-[#0A3161] underline font-bold"
-      : "text-[#0A3161]"
-  }`}
->
-  Change Password
-</button>
+          <button
+            onClick={() => setActiveSection("password")}
+            className={`text-xl transition hover:text-[#0A3161]/80 ${activeSection === "password"
+                ? "text-[#0A3161] underline font-bold"
+                : "text-[#0A3161]"
+              }`}
+          >
+            Change Password
+          </button>
 
 
 

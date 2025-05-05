@@ -129,7 +129,7 @@ function TechnicalManual() {
       <h1 className="font-semibold text-[#0A3161] text-[34px] mb-10">Technical manuals</h1>
 
       {/* Display current slide number and total slides */}
-      <div className="absolute z-10 top-16 right-10 flex items-center space-x-4">
+      <div className="absolute z-10 md:top-16 top-22 right-10 flex items-center space-x-4">
         <span className="text-[#0A3161] text-[34px] mr-10">{`${currentIndex}/${totalSlides}`}</span>
         <button
           ref={nextRef}
@@ -145,7 +145,7 @@ function TechnicalManual() {
         </button>
       </div>
 
-      <div className="flex-1 bg-[#E3EDF9] rounded-xl py-10 flex items-center">
+      <div className="flex-1 bg-[#E3EDF9] rounded-xl md:mt-0 mt-8 py-10 flex items-center">
         <Swiper
           navigation={{
             prevEl: prevRef.current,

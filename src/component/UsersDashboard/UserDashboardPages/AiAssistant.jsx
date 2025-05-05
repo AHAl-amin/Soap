@@ -162,7 +162,7 @@ const AiAssistant = () => {
     };
 
     return (
-        <div className="p-8 h-full flex flex-col lora">
+        <div className="md:p-8 pt-4 h-full w-full  flex flex-col lora">
             <div className="lora flex items-center justify-between p-4">
                 <div className="flex flex-col items-start">
                     <div className="flex gap-10">
@@ -306,7 +306,7 @@ const AiAssistant = () => {
                     </div>
                 )}
 
-                <div className="p-3 fixed bottom-0 w-6/7 bg-white left-[250px] z-50">
+                <div className="p-3 fixed bottom-0 md:w-[85%] w-full bg-white  md:left-[270px] z-30">
                     <div className="flex items-center border border-[#0A3161] rounded-[10px] px-4 py-3">
                         <input
                             type="file"

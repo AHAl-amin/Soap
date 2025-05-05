@@ -10,9 +10,9 @@ const Home = () => {
                 backgroundImage: `url(${Banner})`, // Replace with your image path
             }}
         >
-            <div className="md:w-1/2 w-full md:px-28 min-h-screen px-5  md:text-left space-y-6 pt-[150px]">
+            <div className=" w-full md:px-28 min-h-screen px-5  md:text-left space-y-6 pt-[150px]">
 
-                <div className='w-44 bg-[#041C3780] '>
+                <div className='w-44  bg-[#041C3780] '>
                     <p className='  border-l-4 border-l-[#041c37b2] pr-10 pl-3 py-2 text-[#FFFFFF] font-semibold tracking-widest'>ShipMate AI</p>
                 </div>
                 <div className='py-4'>
