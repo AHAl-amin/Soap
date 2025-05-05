@@ -1,69 +1,172 @@
+// import React, { useRef } from 'react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/navigation';
+// import { Navigation } from 'swiper/modules';
+// import { BsArrowRight } from "react-icons/bs";
+// import { BsArrowLeft } from "react-icons/bs";
+
+// const testimonialsData = [
+//   {
+//     file: "PDF",
+
+//   },
+//   {
+//     file: "PDF",
+
+//   },
+//   {
+//     file: "PDF",
+
+//   },
+//   {
+//     file: "PDF",
+
+//   },
+//   {
+//     file: "PDF",
+
+//   },
+//   {
+//     file: "PDF",
+
+//   },
+//   {
+//     file: "PDF",
+
+//   },
+
+// ];
+
+// function TechnicalManual() {
+//   const prevRef = useRef(null);
+//   const nextRef = useRef(null);
+
+//   return (
+//     <div className="flex flex-col min-h-screen p-10 lora relative">
+//       <h1 className="font-semibold text-[#0A3161] text-[34px] mb-10">Technical manuals</h1>
+
+//       {/* Custom navigation buttons */}
+//       <div className="absolute z-10 top-16 right-10">
+//         <button ref={nextRef} className="bg-[#A4C3E9] text-[#0A3161] cursor-pointer px-3 py-3 rounded-full shadow-md">
+
+//           <BsArrowRight />
 
 
+//         </button>
+//       </div>
+//       <div className="absolute z-10 top-16 right-24">
 
-import React from 'react';
+
+//         <button ref={prevRef} className="bg-[#A4C3E9] text-[#0A3161] px-3 py-3 cursor-pointer rounded-full shadow-md">
+//           <BsArrowLeft />
+//         </button>
+//       </div>
+
+//       <div className="flex-1 bg-[#E3EDF9] rounded-xl py-10 flex items-center">
+//         <Swiper
+//           navigation={{
+//             prevEl: prevRef.current,
+//             nextEl: nextRef.current,
+//           }}
+//           onInit={(swiper) => {
+//             swiper.params.navigation.prevEl = prevRef.current;
+//             swiper.params.navigation.nextEl = nextRef.current;
+//             swiper.navigation.init();
+//             swiper.navigation.update();
+//           }}
+//           modules={[Navigation]}
+//           className="mySwiper h-full"
+//           loop={true}
+//         >
+//           {testimonialsData.map((data) => (
+//             <SwiperSlide key={data.name}>
+//               <div className="text-center px-6 ">
+//                 <h1 className='text-[#0A3161] lora text-[100px]'>{data.file}</h1>
+//               </div>
+//             </SwiperSlide>
+//           ))}
+//         </Swiper>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default TechnicalManual;
+
+import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 
 const testimonialsData = [
-  {
-    image: "https://i.ibb.co.com/n4NyhKJ/posing-athletes-holding-weights.jpg",
-    name: "Product 1",
-    description: "This is a description for product 1. It offers high-quality materials and great value for money.",
-    rating: "⭐⭐⭐⭐☆"
-  },
-  {
-    image: "https://i.ibb.co.com/n4NyhKJ/posing-athletes-holding-weights.jpg",
-    name: "Product 2",
-    description: "Product 2 is a top-rated gadget, known for its innovative design and performance.",
-    rating: "⭐⭐⭐⭐⭐"
-  },
-  {
-    image: "https://i.ibb.co.com/n4NyhKJ/posing-athletes-holding-weights.jpg",
-    name: "Product 3",
-    description: "An advanced version of the previous model, this product offers improved features and enhanced durability.",
-    rating: "⭐⭐⭐⭐☆"
-  },
-  {
-    image: "https://i.ibb.co.com/n4NyhKJ/posing-athletes-holding-weights.jpg",
-    name: "Product 4",
-    description: "This product combines functionality with aesthetics, providing both value and style.",
-    rating: "⭐⭐⭐⭐"
-  },
-  {
-    image: "https://i.ibb.co.com/n4NyhKJ/posing-athletes-holding-weights.jpg",
-    name: "Product 5",
-    description: "A must-have for tech enthusiasts, this product is packed with cutting-edge technology and features.",
-    rating: "⭐⭐⭐⭐⭐"
-  }
+  { file: 'PDF' },
+  { file: 'PDF' },
+  { file: 'PDF' },
+  { file: 'PDF' },
+  { file: 'PDF' },
+  { file: 'PDF' },
+  { file: 'PDF' },
 ];
 
 function TechnicalManual() {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const swiperRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(1); // Track the current slide index (1-based)
+
+  const totalSlides = testimonialsData.length; // Total number of slides
+
+  // Update the index when the slide changes
+  const handleSlideChange = (swiper) => {
+    setCurrentIndex(swiper.realIndex + 1); // Swiper's realIndex is 0-based, so add 1
+  };
+
   return (
-    <div className="flex flex-col min-h-screen p-12 lora">
-      <h1 className="font-semibold text-[#0A3161] text-[34px]">Technical manuals</h1>
-      <div className="flex-1 bg-[#E3EDF9] rounded-xl">
+    <div className="flex flex-col min-h-screen p-10 lora relative">
+      <h1 className="font-semibold text-[#0A3161] text-[34px] mb-10">Technical manuals</h1>
+
+      {/* Display current slide number and total slides */}
+      <div className="absolute z-10 top-16 right-10 flex items-center space-x-4">
+        <span className="text-[#0A3161] text-[34px] mr-10">{`${currentIndex}/${totalSlides}`}</span>
+        <button
+          ref={nextRef}
+          className="bg-[#A4C3E9] text-[#0A3161] px-3 py-3 cursor-pointer rounded-full shadow-md"
+        >
+          <BsArrowLeft />
+        </button>
+        <button
+          ref={prevRef}
+          className="bg-[#A4C3E9] text-[#0A3161] cursor-pointer px-3 py-3 rounded-full shadow-md"
+        >
+          <BsArrowRight />
+        </button>
+      </div>
+
+      <div className="flex-1 bg-[#E3EDF9] rounded-xl py-10 flex items-center">
         <Swiper
-          navigation={true}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          onInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.init();
+            swiper.navigation.update();
+            swiperRef.current = swiper; // Store swiper instance
+          }}
+          onSlideChange={handleSlideChange} // Listen for slide changes
           modules={[Navigation]}
           className="mySwiper h-full"
           loop={true}
         >
-          {testimonialsData.map((data) => (
-            <SwiperSlide key={data.name}>
-              <div className="text-center">
-                <div className="flex justify-center">
-                  <img
-                    className="w-[100px] h-[100px] rounded-full"
-                    src={data.image}
-                    alt={data.name}
-                  />
-                </div>
-                <h2>{data.name}</h2>
-                <p>{data.description}</p>
-                <div>{data.rating}</div>
+          {testimonialsData.map((data, index) => (
+            <SwiperSlide key={index}>
+              <div className="text-center px-6">
+                <h1 className="text-[#0A3161] lora text-[100px]">{data.file}</h1>
               </div>
             </SwiperSlide>
           ))}
