@@ -161,13 +161,13 @@ const Login = () => {
               <input type="checkbox" className="mr-2" />
               <span className="text-xl text-gray-600">Remember me</span>
             </label>
-            <a href="#" className="text-xl text-[#0A3161] hover:underline">
+            <a href="#" className="text-xl text-[#0A3161] hover:underline cursor-pointer">
               Forget Password
             </a>
           </div>
 
           {/* Submit */}
-          <button type="submit" className="w-full bg-[#0A3161] text-white py-3 rounded hover:bg-[#0A3161]/90 transition text-xl">
+          <button type="submit" className="w-full bg-[#0A3161] text-white py-3 rounded hover:bg-[#0A3161]/90 transition text-xl cursor-pointer">
             Login
           </button>
 
