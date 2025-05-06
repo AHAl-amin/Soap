@@ -1,7 +1,6 @@
 
 
 
-
 // import React, { useState, useRef, useEffect } from 'react';
 // import { BiUpload } from 'react-icons/bi';
 // import { FiCamera } from 'react-icons/fi';
@@ -12,15 +11,36 @@
 //   const [isUploadActive, setIsUploadActive] = useState(false);
 //   const [uploadedImage, setUploadedImage] = useState(null);
 //   const [isStreaming, setIsStreaming] = useState(false);
+//   const [isCameraIconVisible, setIsCameraIconVisible] = useState(true); // New state for camera icon visibility
 
 //   const fileInputRef = useRef(null);
 //   const videoRef = useRef(null);
 //   const canvasRef = useRef(null);
 //   const streamRef = useRef(null);
 
+//   // const startCamera = async () => {
+//   //   try {
+//   //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+//   //     if (videoRef.current) {
+//   //       videoRef.current.srcObject = stream;
+//   //       videoRef.current.onloadedmetadata = () => {
+//   //         videoRef.current.play();
+//   //       };
+//   //       streamRef.current = stream;
+//   //       setIsStreaming(true);
+//   //     }
+//   //   } catch (err) {
+//   //     console.error('Error accessing camera:', err);
+//   //     alert('Could not access camera. Please ensure camera permissions are granted.');
+//   //   }
+//   // };
+
+
 //   const startCamera = async () => {
 //     try {
-//       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+//       const stream = await navigator.mediaDevices.getUserMedia({
+//         video: { facingMode: { exact: "environment" } }, // Use back camera
+//       });
 //       if (videoRef.current) {
 //         videoRef.current.srcObject = stream;
 //         videoRef.current.onloadedmetadata = () => {
@@ -30,10 +50,29 @@
 //         setIsStreaming(true);
 //       }
 //     } catch (err) {
-//       console.error('Error accessing camera:', err);
-//       alert('Could not access camera. Please ensure camera permissions are granted.');
+//       console.error("Error accessing camera:", err);
+//       alert(
+//         "Could not access back camera. Falling back to default camera. Please ensure camera permissions are granted."
+//       );
+//       // Fallback to default camera
+//       try {
+//         const fallbackStream = await navigator.mediaDevices.getUserMedia({
+//           video: true,
+//         });
+//         if (videoRef.current) {
+//           videoRef.current.srcObject = fallbackStream;
+//           videoRef.current.onloadedmetadata = () => {
+//             videoRef.current.play();
+//           };
+//           streamRef.current = fallbackStream;
+//           setIsStreaming(true);
+//         }
+//       } catch (fallbackErr) {
+//         console.error("Fallback camera access failed:", fallbackErr);
+//       }
 //     }
 //   };
+  
 
 //   const stopCamera = () => {
 //     if (streamRef.current) {
@@ -81,21 +120,18 @@
 //       <h2 className="text-[34px] text-[#0A3161] font-semibold">Part Scanner</h2>
 //       <p className="text-[#9E9E9E] text-xl">Use your camera or upload an image to identify ship parts</p>
 
-
-
-
-
-
 //       <div className="bg-[#EEEEEE] flex justify-between rounded-xl mb-6 my-10">
 //         <button
 //           onClick={() => {
-//             setIsCameraActive(true); // Switch to camera mode
-//             setIsUploadActive(false); // Disable upload mode
-//             setUploadedImage(null); // Clear any uploaded/captured image
-//             stopCamera(); // Stop any active camera stream to reset camera state
+//             setIsCameraActive(true);
+//             setIsUploadActive(false);
+//             setUploadedImage(null);
+//             stopCamera();
+//             setIsCameraIconVisible(true); // Show icon when switching to camera mode
 //           }}
-//           className={`text-center w-1/2 flex justify-center items-center gap-2 py-3 rounded-lg ${isCameraActive ? 'bg-[#0A3161] text-white' : 'bg-transparent text-[#0A3161]'
-//             }`}
+//           className={`text-center w-1/2 flex justify-center items-center gap-2 py-3 rounded-lg ${
+//             isCameraActive ? 'bg-[#0A3161] text-white' : 'bg-transparent text-[#0A3161]'
+//           }`}
 //         >
 //           <FiCamera />
 //           <span>Camera</span>
@@ -103,39 +139,41 @@
 
 //         <button
 //           onClick={() => {
-//             setIsCameraActive(false); // Switch to upload mode
-//             setIsUploadActive(true); // Enable upload mode
-//             setUploadedImage(null); // Clear any uploaded/captured image
-//             stopCamera(); // Stop any active camera stream
+//             setIsCameraActive(false);
+//             setIsUploadActive(true);
+//             setUploadedImage(null);
+//             stopCamera();
+//             setIsCameraIconVisible(true); // Show icon when switching to upload mode
 //           }}
-//           className={`text-center w-1/2 flex justify-center items-center gap-2 py-3 rounded-lg ${isUploadActive ? 'bg-[#0A3161] text-white' : 'bg-transparent text-[#0A3161]'
-//             }`}
+//           className={`text-center w-1/2 flex justify-center items-center gap-2 py-3 rounded-lg ${
+//             isUploadActive ? 'bg-[#0A3161] text-white' : 'bg-transparent text-[#0A3161]'
+//           }`}
 //         >
 //           <BiUpload />
 //           <span>Upload</span>
 //         </button>
 //       </div>
 
-
-//       <div className=" md:h-150 h-70 bg-[#0A31614D] rounded-lg flex items-center justify-center p-4 relative">
-//       <FiCamera className='text-[120px] absolute text-gray-500 ' />
+//       <div className="md:h-150 h-60 bg-[#0A31614D] rounded-lg flex items-center justify-center p-4 relative">
+//         {/* Conditionally render the FiCamera icon */}
+//         {isCameraIconVisible && !uploadedImage && !isUploadActive && (
+//           <FiCamera className="text-[120px] absolute text-gray-500" />
+//         )}
 //         {isCameraActive ? (
 //           uploadedImage ? (
-//             <img src={uploadedImage} alt="Captured" className="h-full  object-contain rounded-lg " />
+//             <img src={uploadedImage} alt="Captured" className="h-full w-full object-contain rounded-lg" />
 //           ) : (
-
 //             <video
 //               ref={videoRef}
-
 //               autoPlay
 //               playsInline
-//               className="h-full  object-contain rounded-lg "
+//               className="h-full object-contain rounded-lg"
 //             />
 //           )
 //         ) : uploadedImage ? (
-//           <img src={uploadedImage} alt="Uploaded" className="md:h-60 object-contain rounded-lg" />
+//           <img src={uploadedImage} alt="Uploaded" className="h-full  object-contain rounded-lg " />
 //         ) : (
-//           <div className="text-gray-600 text-center">
+//           <div className="text-gray-600 text-center ">
 //             <PiImageThin className="text-[120px] mx-auto" />
 //             <p>Upload an image (PNG, JPG, or JPEG up to 10MB)</p>
 //           </div>
@@ -154,6 +192,7 @@
 //       <button
 //         className="w-full mt-4 py-3 bg-[#0A3161] text-white rounded-lg flex items-center justify-center gap-2"
 //         onClick={() => {
+//           setIsCameraIconVisible(false); // Hide the camera icon on button click
 //           if (isUploadActive) {
 //             if (fileInputRef.current) fileInputRef.current.click();
 //           } else {
@@ -187,17 +226,20 @@
 // export default PartScanner;
 
 
+
 import React, { useState, useRef, useEffect } from 'react';
 import { BiUpload } from 'react-icons/bi';
 import { FiCamera } from 'react-icons/fi';
 import { PiImageThin } from 'react-icons/pi';
+import { MdOutlineCameraswitch } from "react-icons/md";
 
 function PartScanner() {
   const [isCameraActive, setIsCameraActive] = useState(true);
   const [isUploadActive, setIsUploadActive] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [isStreaming, setIsStreaming] = useState(false);
-  const [isCameraIconVisible, setIsCameraIconVisible] = useState(true); // New state for camera icon visibility
+  const [isCameraIconVisible, setIsCameraIconVisible] = useState(true);
+  const [facingMode, setFacingMode] = useState("environment"); // default to back camera
 
   const fileInputRef = useRef(null);
   const videoRef = useRef(null);
@@ -206,7 +248,9 @@ function PartScanner() {
 
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode },
+      });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         videoRef.current.onloadedmetadata = () => {
@@ -259,11 +303,11 @@ function PartScanner() {
   };
 
   useEffect(() => {
-    return () => stopCamera(); // Cleanup
+    return () => stopCamera();
   }, []);
 
   return (
-    <div className="lora p-10 lg:w-[80%] md:w-[90%] w-full mx-auto">
+    <div className="lora md:p-10 p-6 lg:w-[80%] md:w-[90%] w-full mx-auto">
       <h2 className="text-[34px] text-[#0A3161] font-semibold">Part Scanner</h2>
       <p className="text-[#9E9E9E] text-xl">Use your camera or upload an image to identify ship parts</p>
 
@@ -274,7 +318,7 @@ function PartScanner() {
             setIsUploadActive(false);
             setUploadedImage(null);
             stopCamera();
-            setIsCameraIconVisible(true); // Show icon when switching to camera mode
+            setIsCameraIconVisible(true);
           }}
           className={`text-center w-1/2 flex justify-center items-center gap-2 py-3 rounded-lg ${
             isCameraActive ? 'bg-[#0A3161] text-white' : 'bg-transparent text-[#0A3161]'
@@ -285,13 +329,7 @@ function PartScanner() {
         </button>
 
         <button
-          onClick={() => {
-            setIsCameraActive(false);
-            setIsUploadActive(true);
-            setUploadedImage(null);
-            stopCamera();
-            setIsCameraIconVisible(true); // Show icon when switching to upload mode
-          }}
+          onClick={handleUploadClick}
           className={`text-center w-1/2 flex justify-center items-center gap-2 py-3 rounded-lg ${
             isUploadActive ? 'bg-[#0A3161] text-white' : 'bg-transparent text-[#0A3161]'
           }`}
@@ -301,24 +339,19 @@ function PartScanner() {
         </button>
       </div>
 
-      <div className="md:h-150 h-70 bg-[#0A31614D] rounded-lg flex items-center justify-center p-4 relative">
-        {/* Conditionally render the FiCamera icon */}
+      <div className="md:h-130 h-60 bg-[#0A31614D] rounded-lg flex items-center justify-center p-4 relative">
         {isCameraIconVisible && !uploadedImage && !isUploadActive && (
           <FiCamera className="text-[120px] absolute text-gray-500" />
         )}
+
         {isCameraActive ? (
           uploadedImage ? (
             <img src={uploadedImage} alt="Captured" className="h-full object-contain rounded-lg" />
           ) : (
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              className="h-full object-contain rounded-lg"
-            />
+            <video ref={videoRef} autoPlay playsInline className="h-full object-contain rounded-lg" />
           )
         ) : uploadedImage ? (
-          <img src={uploadedImage} alt="Uploaded" className="md:h-60 object-contain rounded-lg" />
+          <img src={uploadedImage} alt="Uploaded" className="h-full object-contain rounded-lg" />
         ) : (
           <div className="text-gray-600 text-center">
             <PiImageThin className="text-[120px] mx-auto" />
@@ -339,9 +372,9 @@ function PartScanner() {
       <button
         className="w-full mt-4 py-3 bg-[#0A3161] text-white rounded-lg flex items-center justify-center gap-2"
         onClick={() => {
-          setIsCameraIconVisible(false); // Hide the camera icon on button click
+          setIsCameraIconVisible(false);
           if (isUploadActive) {
-            if (fileInputRef.current) fileInputRef.current.click();
+            fileInputRef.current && fileInputRef.current.click();
           } else {
             setIsCameraActive(true);
             setIsUploadActive(false);
@@ -366,8 +399,24 @@ function PartScanner() {
           </>
         )}
       </button>
+
+      {/* Toggle Camera Button */}
+      {isStreaming && (
+        <button
+          onClick={() => {
+            stopCamera();
+            setFacingMode((prev) => (prev === "user" ? "environment" : "user"));
+            setTimeout(() => startCamera(), 300);
+            
+          }}
+          className=" mt-2 py-2 text-white text-[20px]  cursor-pointer rounded-lg absolute md:bottom-54 md:right-132 right-16 bottom-50"
+        >
+          <MdOutlineCameraswitch />
+        </button>
+      )}
     </div>
   );
 }
 
 export default PartScanner;
+
