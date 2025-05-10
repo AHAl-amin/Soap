@@ -1,8 +1,8 @@
 import { useState } from "react";
-import login_img from "../../../assets/image/hhhh.png";
+
 import { LuLockKeyhole } from "react-icons/lu";
 
-function ConfirmPassword() {
+function NewPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordFocused, setPasswordFocused] = useState(false);
@@ -20,77 +20,67 @@ function ConfirmPassword() {
 
   return (
     <div className="flex items-center justify-between w-full min-h-screen gap-10 nunito">
-     <div className="w-1/2 h-screen">
-                    <img
-                        src={login_img}
-                        alt="Registration illustration"
-                        className="w-full h-screen p-10"
-                    />
-                </div>
-      <div className="w-1/2 lg:px-40">
-        <div className="text-center mb-20">
-          <h1 className="text-3xl text-[#000000]">ChaskiX</h1>
-          <p className="text-3xl text-[#000000]">Logo here</p>
-        </div>
+      
+      <div className="w-1/3 mx-auto ">
+        
 
-        <div className="bg-[#F8FCFF] shadow-md rounded px-10 py-20">
+        <div className="shadow rounded px-10 py-20">
           {/* <h2 className="text-[28px] font-medium text-center text-[#012939] mb-6">
             Confirm Password
           </h2> */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="relative">
-              <label htmlFor="password" className="block text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-gray-400 mb-2">
                 Password
               </label>
               <input
                 id="password"
                 type="password"
-                placeholder={passwordFocused ? "" : "Password"}
+                placeholder= "Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onFocus={() => setPasswordFocused(true)}
                 onBlur={() => setPasswordFocused(password !== "")}
-                className="w-full px-4 py-2 border bg-[#F8FCFF] border-[#5C91B1] rounded pl-10"
-                required
+               className="w-full px-4 py-2 border  border-[#5C91B1] rounded pl-10 focus:border-[#5C91B1] focus:ring-0 outline-none"
                 aria-required="true"
               />
-              {!passwordFocused && (
+             
                 <LuLockKeyhole className="text-[#959AA6] absolute bottom-3 left-3" />
-              )}
+              
             </div>
 
             <div className="relative">
               <label
                 htmlFor="confirmPassword"
-                className="block text-gray-700 mb-2"
+                className="block text-gray-400 mb-2"
               >
                 Confirm Password
               </label>
               <input
                 id="confirmPassword"
                 type="password"
-                placeholder={confirmPasswordFocused ? "" : "Confirm Password"}
+                placeholder= "Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 onFocus={() => setConfirmPasswordFocused(true)}
                 onBlur={() => setConfirmPasswordFocused(confirmPassword !== "")}
-                className="w-full px-4 py-2 border bg-[#F8FCFF] border-[#5C91B1] rounded pl-10"
+                className="w-full px-4 py-2 border  border-[#5C91B1] rounded pl-10 focus:border-[#5C91B1] focus:ring-0 outline-none"
                 required
                 aria-required="true"
               />
-              {!confirmPasswordFocused && (
+            
                 <LuLockKeyhole className="text-[#959AA6] absolute bottom-3 left-3" />
-              )}
+             
             </div>
 
             <div className="flex justify-center mt-16">
               <button
                 type="submit"
-                className="bg-[#1B97D8] text-white rounded-[8px] mx-auto px-6 py-2 cursor-pointer w-[123px]"
+                className="bg-[#0A3161] text-white rounded-[8px] mx-auto px-6 py-2 cursor-pointer w-[123px]"
               >
                 Confirm
               </button>
-              
+
             </div>
           </form>
         </div>
@@ -99,4 +89,4 @@ function ConfirmPassword() {
   );
 }
 
-export default ConfirmPassword;
+export default NewPassword;

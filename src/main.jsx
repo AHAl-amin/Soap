@@ -13,9 +13,9 @@ import UserDashboardLayout from './component/UsersDashboard/UserDashboardLayout/
 
 import Registration from './component/Shared/Registration/Registration.jsx';
 import Login from './component/Shared/Login/Login.jsx';
-import ConfirmEmail from './component/Shared/ConfirmEmail/ConfirmEmail.jsx';
+
 import Verification from './component/Shared/Verification/Verification.jsx';
-import ConfirmPassword from './component/Shared/ConfirmPassword/ConfirmPassword.jsx';
+
 import PasswordChangeSuccesfully from './component/Shared/PasswordChangeSuccesfully/PasswordChangeSuccesfully.jsx';
 
 
@@ -23,6 +23,13 @@ import PartScanner from './component/UsersDashboard/UserDashboardPages/OrderMana
 import AiAssistant from './component/UsersDashboard/UserDashboardPages/AiAssistant.jsx';
 import TechnicalManual from './component/UsersDashboard/UserDashboardPages/TechnicalManual.jsx';
 import Settings from './component/UsersDashboard/UserDashboardPages/Settings.jsx';
+import { Provider } from 'react-redux';
+import store from './Redux/store.js';
+// import ForgatePassword from './component/Shared/ForgatePassword/ForgatePassword.jsx';
+import NewPassword from './component/Shared/NewPassword/NewPassword.jsx';
+// import ForgatePassword from './component/Shared/ForgtPassword/ForgatePassword.jsx';
+import ForgetPassword from './component/Shared/ForgetPassword/ForgetPassword.jsx';
+import PasswordChangeVerification from './component/Shared/PasswordChangeVerification.jsx';
 
 
 const router = createBrowserRouter([
@@ -82,28 +89,34 @@ const router = createBrowserRouter([
     element:<Login/>
   },
   {
-    path:'/confirm_email',
-    element:<ConfirmEmail/>
+    path:'/forget_password',
+    element:<ForgetPassword/>
   },
   {
     path:'/verification',
     element:<Verification/>
   },
   {
-    path:'/confirm_password',
-    element:<ConfirmPassword/>
+    path:'/new_password',
+    element:<NewPassword/>
   },
   {
     path:'/password_change_succesfull',
     element:<PasswordChangeSuccesfully/>
+  },
+  {
+    path:'/password_change_verification',
+    element:<PasswordChangeVerification/>
   }
 
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+     <Provider store={store}>
     <React.StrictMode>
       <RouterProvider router={router} />
     </React.StrictMode>
+    </Provider>
   </StrictMode>,
 )

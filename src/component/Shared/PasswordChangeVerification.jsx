@@ -4,7 +4,7 @@
 import React, { useRef, useState } from 'react';
 
 
-function Verification() {
+function PasswordChangeVerification() {
     const [otp, setOtp] = useState(["", "", "", ""]);
     const [focused, setFocused] = useState([false, false, false, false]);
     const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
@@ -152,4 +152,4 @@ function Verification() {
     );
 }
 
-export default Verification;
+export default PasswordChangeVerification;

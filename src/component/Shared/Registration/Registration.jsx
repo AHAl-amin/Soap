@@ -1,17 +1,66 @@
+
+
+
 import React, { useState } from "react";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "../../../Redux/feature/authApi";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Registration = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    acceptTerms: false,
+  });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [register, { isLoading }] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // handle form logic
+    const { fullName, email, password, confirmPassword, acceptTerms } = formData;
+
+    if (!fullName || !email || !password || !confirmPassword) {
+      toast.error("All fields are required.");
+      return;
+    }
+
+    if (password.trim() !== confirmPassword.trim()) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+
+    if (!acceptTerms) {
+      toast.error("You must accept the terms and conditions.");
+      return;
+    }
+
+    const userData = { fullName, email, password };
+
+    try {
+      await register(userData).unwrap();
+      toast.success("Registration successful!");
+      localStorage.setItem("userEmail", email);
+      navigate("/verification");
+    } catch (err) {
+      const errorMessage = err?.data?.message || "Registration failed.";
+      const isEmailExists = /email.*exists/i.test(errorMessage);
+      toast.error(isEmailExists ? "User already exists." : errorMessage);
+    }
   };
 
   return (
@@ -23,35 +72,32 @@ const Registration = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Full Name */}
-          <div>
-           
-            <input
-              id="full-name"
-              placeholder="Enter full name"
-              type="text"
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
-            />
-          </div>
+          <input
+            name="fullName"
+            placeholder="Enter full name"
+            type="text"
+            value={formData.fullName}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
+          />
 
-          {/* Email */}
-          <div>
-           
-            <input
-              id="email"
-              placeholder="Enter email"
-              type="email"
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
-            />
-          </div>
+          <input
+            name="email"
+            placeholder="Enter email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
+          />
 
           {/* Password */}
           <div className="relative">
-           
             <input
-              id="password"
+              name="password"
               placeholder="Enter password"
               type={showPassword ? "text" : "password"}
+              value={formData.password}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
             />
             <span
@@ -64,11 +110,12 @@ const Registration = () => {
 
           {/* Confirm Password */}
           <div className="relative">
-           
             <input
-              id="confirm-password"
+              name="confirmPassword"
               placeholder="Enter confirm password"
               type={showConfirmPassword ? "text" : "password"}
+              value={formData.confirmPassword}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
             />
             <span
@@ -81,29 +128,45 @@ const Registration = () => {
 
           {/* Terms and Forget */}
           <div className="flex items-center justify-between">
-            <label className="flex items-center">
-              <input type="checkbox" className="mr-2" />
-              <span className="text-xl text-gray-600">Accept all terms & conditions</span>
+            <label className="flex items-center cursor-pointer text-xl text-gray-600">
+              <input
+                name="acceptTerms"
+                type="checkbox"
+                checked={formData.acceptTerms}
+                onChange={handleChange}
+                className="mr-2"
+              />
+              Accept all terms & conditions
             </label>
-            <a href="#" className="text-xl text-[#0A3161] hover:underline cursor-pointer">
-              Forget Password
-            </a>
+            <Link to="/forgot-password" className="text-xl text-[#0A3161] hover:underline">
+              Forgot Password
+            </Link>
           </div>
 
           {/* Submit */}
-          <button type="submit" className="w-full bg-[#0A3161] text-white py-3 rounded hover:bg-[#0A3161]/90 transition cursor-pointer">
-            Create Account
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#0A3161] text-white py-3 rounded hover:bg-[#0A3161]/90 transition cursor-pointer"
+          >
+            {isLoading ? "Creating..." : "Create Account"}
           </button>
 
-          <p className="text-center text-xl text-gray-500 mt-4">Already have an account? <Link to="/login" className="font-medium text-xl text-[#0A3161] underline hover:underline cursor-pointer">Login</Link></p> 
+          <p className="text-center text-xl text-gray-500 mt-4">
+            Already have an account?{" "}
+            <Link to="/login" className="font-medium text-[#0A3161] underline">
+              Login
+            </Link>
+          </p>
 
           <p className="text-center text-sm text-gray-500 mt-4">
-            By logging in, I have read the{" "}
-            <a href="#" className="text-[#0A3161] hover:underline">terms of service</a> and{" "}
-            <a href="#" className="text-[#0A3161] hover:underline">privacy policy</a>
+            By signing up, I agree to the{" "}
+            <Link to="/terms" className="text-[#0A3161] hover:underline">terms of service</Link> and{" "}
+            <Link to="/privacy" className="text-[#0A3161] hover:underline">privacy policy</Link>
           </p>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
