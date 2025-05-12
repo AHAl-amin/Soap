@@ -64,7 +64,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="flex items-center justify-center md:py-40 py-8 lora">
+    <div className="flex items-center justify-center md:py-36 h-screen py-10 bg-[#0A3161]  lora">
       <div className="bg-white p-8 rounded-lg shadow w-full md:w-1/2 lg:w-1/3">
         <h2 className="text-4xl font-bold text-center text-[#0A3161] mb-2">Create Account</h2>
         <p className="text-center text-gray-500 mb-6 text-xl">

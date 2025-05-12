@@ -105,6 +105,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
+  
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -129,9 +130,8 @@ const Login = () => {
       console.log("backendResponse", res);
 
       if (res.access_token && res.refresh_token) {
-        const storage = rememberMe ? localStorage : sessionStorage;
-        storage.setItem("access_token", res.access_token);
-        storage.setItem("refresh_token", res.refresh_token);
+        localStorage.setItem("access_token", res.access_token);
+        localStorage.setItem("refresh_token", res.refresh_token);
 
         console.log("Access Token:", res.access_token);
         console.log("Refresh Token:", res.refresh_token);
@@ -149,7 +149,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center md:py-40 py-8 lora">
+    <div className="flex items-center justify-center md:py-40 py-8 lora bg-[#0A3161] h-screen">
       <div className="bg-white p-8 rounded-lg shadow w-full md:w-1/2 lg:w-1/3">
         <h2 className="text-4xl font-bold text-center text-[#0A3161] mb-2">
           Welcome

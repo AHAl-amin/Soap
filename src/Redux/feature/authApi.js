@@ -33,13 +33,7 @@ export const authApi = createApi({
             })
         }),
 
-        ai: builder.mutation({
-            query: (data) => ({
-                url: "/parts-recog/",
-                method: "POST",
-                body: data,
-            })
-        }),
+      
 
 
         // resendOtp: builder.mutation({
@@ -77,6 +71,6 @@ export const authApi = createApi({
 
 //  Destructure the auto-generated hook
 export const { 
-    useRegisterMutation,useLoginMutation, useRegisterVerificationMutation, useAiMutation
+    useRegisterMutation,useLoginMutation, useRegisterVerificationMutation, 
  } = authApi;
 export default authApi;
