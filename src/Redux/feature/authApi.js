@@ -25,13 +25,13 @@ export const authApi = createApi({
             }),
         }),
 
-        registerVerification: builder.mutation({
-            query: (data) => ({
-                url: "/users/activate/",
-                method: "POST",
-                body: data,
-            })
-        }),
+        // registerVerification: builder.mutation({
+        //     query: (data) => ({
+        //         url: "/users/activate/",
+        //         method: "POST",
+        //         body: data,
+        //     })
+        // }),
 
       
 
@@ -71,6 +71,6 @@ export const authApi = createApi({
 
 //  Destructure the auto-generated hook
 export const { 
-    useRegisterMutation,useLoginMutation, useRegisterVerificationMutation, 
+    useRegisterMutation,useLoginMutation,
  } = authApi;
 export default authApi;

@@ -52,15 +52,18 @@ const Registration = () => {
     const userData = { fullName, email, password };
 
     try {
-      await register(userData).unwrap();
-      toast.success("Registration successful!");
-      localStorage.setItem("userEmail", email);
-      navigate("/verification");
-    } catch (err) {
-      const errorMessage = err?.data?.message || "Registration failed.";
-      const isEmailExists = /email.*exists/i.test(errorMessage);
-      toast.error(isEmailExists ? "User already exists." : errorMessage);
-    }
+  const response = await register(userData).unwrap();
+  console.log('Backend Response (Success):', response); // Log successful response
+
+  toast.success("Registration successful!");
+  localStorage.setItem("userEmail", email);
+  navigate("/login");
+} catch (err) {
+  console.error('Backend Error Response:', err); // Log error response
+  const errorMessage = err?.data?.message || "Registration failed.";
+  const isEmailExists = /email.*exists/i.test(errorMessage);
+  toast.error(isEmailExists ? "User already exists." : errorMessage);
+}
   };
 
   return (
@@ -138,9 +141,9 @@ const Registration = () => {
               />
               Accept all terms & conditions
             </label>
-            <Link to="/forgot-password" className="text-xl text-[#0A3161] hover:underline">
+            {/* <Link to="/forgot-password" className="text-xl text-[#0A3161] hover:underline">
               Forgot Password
-            </Link>
+            </Link> */}
           </div>
 
           {/* Submit */}

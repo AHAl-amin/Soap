@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // Load accessToken from localStorage when Redux initializes
-const storedAccessToken = localStorage.getItem("accessToken");
+const storedAccessToken = localStorage.getItem("access_token");
 
 const authSlice = createSlice({
     name: "auth",
