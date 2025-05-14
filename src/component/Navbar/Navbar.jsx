@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import navberIcon from '../img/login_icon.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaUserTie } from "react-icons/fa";
 import { useState } from 'react';
 import { logout } from '../../Redux/authSlice';
@@ -10,6 +10,7 @@ import { logout } from '../../Redux/authSlice';
 
 const Navbar = () => {
     const isAuthenticated = localStorage.getItem('access_token');
+    // const isAuthenticated = useSelector((state) => state.auth.token);
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
 

@@ -1,7 +1,7 @@
 
 
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../../Redux/feature/authApi";
@@ -10,8 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
+    
+    username: "",
     password: "",
     confirmPassword: "",
     acceptTerms: false,
@@ -32,12 +32,12 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { fullName, email, password, confirmPassword, acceptTerms } = formData;
+    const {  username, password, confirmPassword, acceptTerms } = formData;
 
-    if (!fullName || !email || !password || !confirmPassword) {
+    if ( !username || !password || !confirmPassword) {
       toast.error("All fields are required.");
       return;
-    }
+    } 
 
     if (password.trim() !== confirmPassword.trim()) {
       toast.error("Passwords do not match.");
@@ -49,20 +49,24 @@ const Registration = () => {
       return;
     }
 
-    const userData = { fullName, email, password };
+    const userData = {  username, password };
 
     try {
   const response = await register(userData).unwrap();
+  
   console.log('Backend Response (Success):', response); // Log successful response
 
   toast.success("Registration successful!");
-  localStorage.setItem("userEmail", email);
+
+  localStorage.setItem("userame", username);
+
   navigate("/login");
+
 } catch (err) {
   console.error('Backend Error Response:', err); // Log error response
   const errorMessage = err?.data?.message || "Registration failed.";
-  const isEmailExists = /email.*exists/i.test(errorMessage);
-  toast.error(isEmailExists ? "User already exists." : errorMessage);
+  const isUserNameExists = /username.*exists/i.test(errorMessage);
+  toast.error(isUserNameExists ? "User already exists." : errorMessage);
 }
   };
 
@@ -75,20 +79,13 @@ const Registration = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input
-            name="fullName"
-            placeholder="Enter full name"
-            type="text"
-            value={formData.fullName}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
-          />
+          
 
           <input
-            name="email"
-            placeholder="Enter email"
-            type="email"
-            value={formData.email}
+            name="username"
+            placeholder="Enter your username"
+            type="text"
+            value={formData.username}
             onChange={handleChange}
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#0A3161]"
           />
@@ -141,9 +138,7 @@ const Registration = () => {
               />
               Accept all terms & conditions
             </label>
-            {/* <Link to="/forgot-password" className="text-xl text-[#0A3161] hover:underline">
-              Forgot Password
-            </Link> */}
+          
           </div>
 
           {/* Submit */}

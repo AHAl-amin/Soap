@@ -49,10 +49,19 @@ export const ApiSlice = createApi({
         body: data, // FormData for image + message
       }),
     }),
+
+    updateProfile: builder.mutation({
+      query: (profileData) => ({
+        url: '/update-profile/',
+        method: 'PUT',
+        body: profileData, // This will be the JSON data like { "username": "newUsername" }
+      }),
+      invalidatesTags: ['Profile'], // Refetch profile-related data after update
+    }),
     // Add other endpoints here if needed
   }),
 });
 
-export const { useAiMutation } = ApiSlice;
+export const { useAiMutation, useUpdateProfileMutation } = ApiSlice;
 
 export default ApiSlice;
