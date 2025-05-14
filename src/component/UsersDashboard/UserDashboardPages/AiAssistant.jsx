@@ -9,6 +9,7 @@ import { GoPaperAirplane } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import aiIcon from "../../img/login_icon2.png";
 import { useAiMutation } from "../../../Redux/feature/ApiSlice";
+import { FaUserTie } from "react-icons/fa";
 
 const AiAssistant = () => {
     const [messages, setMessages] = useState([]);
@@ -96,7 +97,7 @@ const AiAssistant = () => {
                 alert("Please upload an image file (e.g., .jpg, .png).");
                 return;
             }
-        
+
             const imageUrl = URL.createObjectURL(file);
             setSelectedImage(imageUrl);
             setSelectedFileName(file.name);
@@ -182,7 +183,7 @@ const AiAssistant = () => {
                                                     <img
                                                         src={message.image}
                                                         alt="Uploaded"
-                                                        className="rounded-lg shadow-md w-24 h-12"
+                                                        className="rounded-lg shadow-md w-14 h-10"
                                                     />
                                                     {message.fileName && (
                                                         <p className="text-xs text-gray-500 mt-1 capitalize">{message.fileName}</p>
@@ -191,21 +192,29 @@ const AiAssistant = () => {
                                             </div>
                                         )}
                                         <div className="rounded-full flex items-center justify-center">
-                                            <img
+                                            {/* <img
                                                 src="https://i.ibb.co.com/x2wkVkr/Whats-App-Image-2024-07-04-at-10-43-40-AM.jpg"
                                                 alt=""
                                                 className="rounded-full h-10 min-w-10"
+                                            /> */}
+
+                                            <FaUserTie
+                                                className="text-[36px] text-gray-800 cursor-pointer"
+
                                             />
                                         </div>
                                     </div>
                                 </div>
                             ) : (
                                 <div className="flex flex-col items-start w-full">
-                                    <div className="flex items-start space-x-3 w-[80%]">
+                                    <div className="flex items-start space-x-3 md:w-[80%] w-full">
                                         <div className="h-10 w-10 rounded-full flex items-center justify-center">
                                             <img src={aiIcon} className="h-10 w-10 text-white" />
                                         </div>
-                                        <div className="px-5 py-4 rounded-lg dark:bg-[#0A31611A] text-black dark:text-[#595959] lg:text-[16px] max-w-[80%] break-words whitespace-pre-wrap">
+                                        {/* <div className="px-5 py-4 rounded-lg dark:bg-[#0A31611A] text-black dark:text-[#595959] lg:text-[16px] max-w-[80%] break-words whitespace-pre-wrap">
+                                            <ReactMarkdown>{message.text}</ReactMarkdown>
+                                        </div> */}
+                                        <div className="px-5 py-4 rounded-lg dark:bg-[#0A31611A] text-black dark:text-[#595959] lg:text-[16px] md:max-w-[80%] w-full break-words whitespace-pre-wrap">
                                             <ReactMarkdown>{message.text}</ReactMarkdown>
                                         </div>
                                     </div>

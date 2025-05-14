@@ -172,7 +172,7 @@ const UserDashboardSidebar = () => {
         )}
 
         <Link
-          to="/"
+       
           className="flex gap-4 items-center justify-center border-b-2 border-b-[#FFFFFF] md:pb-10 pb-6 cursor-pointer"
         >
           <img src={navberIcon} alt="Logo" className="md:h-10 h-8 w-auto" />
@@ -235,12 +235,12 @@ const UserDashboardSidebar = () => {
             <h1 className="text-lg font-medium">Settings</h1>
           </NavLink>
 
-          <button
+          {/* <button
             className="text-[white] flex gap-2 items-center justify-center absolute bottom-40 cursor-pointer left-10"
             onClick={() => setIsSidebarOpen(false)}
           >
             Logout <MdOutlineLogout />
-          </button>
+          </button> */}
         </div>
       </div>
 
