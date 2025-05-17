@@ -3,7 +3,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://192.168.10.208:5500',
+  baseUrl: 'https://soapbackendd.pythonanywhere.com/',
 
 //     const accessToken = localStorage.getItem('access_token');
 //     // const token = getState().auth?.token || accessToken;
