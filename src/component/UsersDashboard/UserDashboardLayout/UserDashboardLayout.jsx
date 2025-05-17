@@ -1,8 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import UserDashboardSidebar from "../UserDashboardSidebar/UserDashboardSidebar";
 
 
 const UserDashboardLayout = () => {
+
+   const token = localStorage.getItem('access_token')
+    console.log(token)
+  
+
+
+    // If no token, redirect to login page
+    if (!token) {
+        return <Navigate to="/login" replace />;
+    }
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
