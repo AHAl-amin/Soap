@@ -157,7 +157,7 @@ const AiAssistant = () => {
             <div className="flex flex-col flex-1">
                 <div className="flex-1 overflow-y-auto p-4 space-y-6 relative mb-10">
                     {!hasUserSentMessage && (
-                        <div className="absolute bottom-4 w-[80%]">
+                        <div className="absolute bottom-4 px-4">
                             <div className="flex items-start space-x-3">
                                 <div className="rounded-full text-[#0A3161] flex items-center justify-center">
                                     <img src={aiIcon} className="h-10 w-10 mt-1 text-[#0A3161]" />
@@ -187,9 +187,9 @@ const AiAssistant = () => {
                                                         alt="Uploaded"
                                                         className="rounded-lg shadow-md w-14 h-10"
                                                     />
-                                                    {message.fileName && (
+                                                    {/* {message.fileName && (
                                                         <p className="text-xs text-gray-500 mt-1 capitalize">{message.fileName}</p>
-                                                    )}
+                                                    )} */}
                                                 </div>
                                             </div>
                                         )}
@@ -205,7 +205,7 @@ const AiAssistant = () => {
                                 </div>
                             ) : (
                                 <div className="flex flex-col items-start w-full">
-                                    <div className="flex items-start space-x-3 md:w-[80%] w-full">
+                                    <div className="flex items-start space-x-3 ">
                                         <div className="h-10 w-10 rounded-full flex items-center justify-center">
                                             <img src={aiIcon} className="h-10 w-10 text-white" />
                                         </div>
@@ -252,7 +252,7 @@ const AiAssistant = () => {
 
 
                                         {selectedImage && (
-                    <div className="md:mb-10 mb-18 ml-3 flex items-center space-x-3">
+                    <div className="md:mb-14 mb-18 ml-3 flex items-center space-x-3">
                         <div className="relative">
                             <img
                                 src={selectedImage}
