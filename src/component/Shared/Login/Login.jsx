@@ -224,10 +224,10 @@ const Login = () => {
     <div className="flex items-center justify-center py-8 md:py-20 bg-[#0A3161] min-h-screen lora">
       <div className="bg-white p-8 rounded-lg shadow w-full md:w-1/3">
         <h2 className="text-3xl font-bold text-center text-[#0A3161] mb-2">
-          Welcome
+          Ship Parts Inventory tool
         </h2>
         <p className="text-center text-gray-500 mb-6 text-lg">
-          Enter your credentials to access the ship maintenance system
+          Enter your credentials to access the Ship Parts Inventory tool
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
