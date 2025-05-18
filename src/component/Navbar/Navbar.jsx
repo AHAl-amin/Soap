@@ -54,7 +54,7 @@ const Navbar = () => {
                                             Dashboard
                                         </button>
                                     </Link>
-                                    <Link to="/login" onClick={handleLogout}>
+                                    <Link to="/" onClick={handleLogout}>
                                         <button className="w-full text-white bg-[#0A3161] md:text-xl text-sm font-medium py-2 px-4 rounded-xl cursor-pointer">
                                             Log out
                                         </button>
@@ -65,7 +65,7 @@ const Navbar = () => {
                     ) : (
                         <>
                             <Link to="/login">
-                                <button className="text-white bg-[#0A3161] md:text-xl text-sm font-medium py-2 px-4 rounded-xl cursor-pointer">
+                                <button className="text-white md:mr-4 mr-2 bg-[#0A3161] md:text-xl text-sm font-medium py-2 px-4 rounded-xl cursor-pointer">
                                     Log In
                                 </button>
                             </Link>

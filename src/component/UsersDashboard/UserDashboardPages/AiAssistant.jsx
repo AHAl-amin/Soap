@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { PaperclipIcon, SendIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { GoPaperAirplane } from "react-icons/go";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import aiIcon from "../../img/login_icon2.png";
 import { useAiMutation } from "../../../Redux/feature/ApiSlice";
 import { FaUserTie } from "react-icons/fa";
@@ -26,6 +26,16 @@ const AiAssistant = () => {
 
     const navigate = useNavigate();
     const [aiRequest] = useAiMutation();
+
+       const token = localStorage.getItem('access_token')
+    console.log(token)
+  
+
+
+    // If no token, redirect to login page
+    if (!token) {
+        return <Navigate to="/login" replace />;
+    }
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
