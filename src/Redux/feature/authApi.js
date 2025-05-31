@@ -6,7 +6,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://soapbackendd.pythonanywhere.com/", //  Update this with your backend URL
+        baseUrl: "https://backend.shipmateai.org/", //  Update this with your backend URL
     }),
     endpoints: (builder) => ({
 
